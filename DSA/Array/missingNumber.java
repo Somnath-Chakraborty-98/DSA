@@ -12,12 +12,10 @@ public class missingNumber{
         int n=arr.length;
         int actualLength=n+1;
         int actualSum=actualLength*(actualLength+1)/2;
-        System.out.println(actualSum);
         int sum=0;
         for(int i=0;i<arr.length;i++){
             sum=sum+arr[i];
         }
-        System.out.println(sum);
         System.out.println("Missing Number= "+(actualSum-sum));
     }
 }
