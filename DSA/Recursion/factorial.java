@@ -1,11 +1,10 @@
 public class factorial{
 
-    int f=1;
+    
     public int fact(int n){
-        if(n==0) return f;
+        if(n==0) return 1;
         else{
-            f*=n;
-            return (fact(n-1));
+            return (n*fact(n-1));
         }
     }
 
