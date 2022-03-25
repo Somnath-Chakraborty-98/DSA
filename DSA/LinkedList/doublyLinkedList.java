@@ -33,10 +33,28 @@ public class doublyLinkedList {
         System.out.println("END");
     }
 
+    void diplayReverse(){
+        Node temp = head;
+        Node last= null;
+
+        System.out.print(" START");
+        while(temp!=null){
+            last=temp;
+            temp=temp.next;
+        }
+        while(last!=null){
+            System.out.print(" <- "+last.data+" -> ");
+            last=last.prev;
+        }
+        
+        System.out.println("END");
+    }
+
     void addAtStart(int data){
         Node node= new Node(data);
         node.next=head;
         node.prev=null;
+        if(head!=null) head.prev=node;
         head=node;
     }
 
@@ -152,5 +170,6 @@ public class doublyLinkedList {
 
 
         ll.display();
+        ll.diplayReverse();
     }
 }
