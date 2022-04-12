@@ -17,15 +17,15 @@ public class circularLinkedList {
     }
 
     void display(){
-        if(isEmpty()) return;
-
         Node temp=head;
 
-        while(temp!=tail){
-            System.out.print(temp.data+" -> ");
-            temp=temp.next;
+        if(head!=null){
+            do{
+                System.out.print(temp.data + " -> ");
+                temp=temp.next;
+            } while(temp!=head);
         }
-        System.out.println("HEAD");
+        System.out.print("HEAD");
     }
 
     void addAtStart(int data){
@@ -33,12 +33,11 @@ public class circularLinkedList {
         if(isEmpty()){
             head=node;
             tail=node;
-            node.next=node;
             return;
         }
         node.next=head;
         tail.next=node;
-        head=node;
+        head=node; //TAIL=NODE
     }
 
     void addToEnd(int data){
