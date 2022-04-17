@@ -170,6 +170,24 @@ public class InterviewQuestions {
         ll.deleteDuplicate();
         ll.display();
         ll.nThLastElement(2);
+        
+
+        
+        InterviewQuestions l1=new InterviewQuestions();
+        InterviewQuestions l2=new InterviewQuestions();
+
+        l1.addAtStart(7);
+        l1.addToEnd(1);
+        l1.addToEnd(6);
+
+        l2.addAtStart(5);
+        l2.addToEnd(9);
+        l2.addToEnd(2);
+
+        ll.sumList(l1, l2);
+
+        ll.partition(ll,7);
+        
     }
 
 
@@ -210,5 +228,89 @@ public class InterviewQuestions {
         }
         System.out.println("Nth Last Element is = "+ node.data);
     }
+
+
+
+
+
+
+    void sumList(InterviewQuestions l1, InterviewQuestions l2) {
+        InterviewQuestions sum = new InterviewQuestions();
+
+        InterviewQuestions.Node node1=l1.head;
+        InterviewQuestions.Node node2=l2.head;
+        int size=1;
+        int sum1=0;
+        int sum2=0;
+        int totalSum=0;
+
+        while(node1.next!=null && node2.next!=null){
+            node1=node1.next;
+            node2=node2.next;
+            size++;
+        }
+        for(int i=0;i<size;i++){
+            sum1=(sum1*10)+node1.data;
+            sum2=(sum2*10)+node2.data;
+
+            node1=node1.prev;
+            node2=node2.prev;
+        }
+        totalSum=sum1+sum2;
+        while(totalSum>0){
+            sum.addAtStart(totalSum%10);
+            totalSum=totalSum/10;
+        }
+
+        //Display
+
+        InterviewQuestions.Node temp = sum.head;
+
+        System.out.print(" START");
+        while(temp!=null){
+            System.out.print(" <- "+temp.data+" -> ");
+            temp=temp.next;
+        }
+        System.out.println("END");
+        
+        
+    }
+
+
+
+
+
+
+    void partition(InterviewQuestions ll, int n){
+        InterviewQuestions patition = new InterviewQuestions();
+        InterviewQuestions.Node node=ll.head;
+
+        while(node!=null){
+
+            if(patition.head == null || node.data<n){
+                patition.addAtStart(node.data);
+            }
+            else{
+                patition.addToEnd(node.data);
+            }
+
+            node=node.next;
+            
+        }
+
+        InterviewQuestions.Node temp = patition.head;
+
+        System.out.print(" START");
+        while(temp!=null){
+            System.out.print(" <- "+temp.data+" -> ");
+            temp=temp.next;
+        }
+        System.out.println("END");
+
+    }
+
+
+    void intersection(){}
+
 
 }
