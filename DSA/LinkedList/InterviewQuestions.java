@@ -187,6 +187,25 @@ public class InterviewQuestions {
         ll.sumList(l1, l2);
 
         ll.partition(ll,7);
+
+
+
+        InterviewQuestions list1=new InterviewQuestions();
+        InterviewQuestions list2=new InterviewQuestions();
+
+        list1.addAtStart(1);
+        list1.addToEnd(3);
+        list1.addToEnd(5);
+
+        list2.addAtStart(1);
+        list2.addToEnd(2);
+        list2.addToEnd(9);
+        list2.addToEnd(14);
+        list2.addToEnd(17);
+        
+        ll.mergeSortedLL(list1, list2);
+
+        
         
     }
 
@@ -264,16 +283,7 @@ public class InterviewQuestions {
 
         //Display
 
-        InterviewQuestions.Node temp = sum.head;
-
-        System.out.print(" START");
-        while(temp!=null){
-            System.out.print(" <- "+temp.data+" -> ");
-            temp=temp.next;
-        }
-        System.out.println("END");
-        
-        
+        sum.display();
     }
 
 
@@ -298,19 +308,40 @@ public class InterviewQuestions {
             
         }
 
-        InterviewQuestions.Node temp = patition.head;
-
-        System.out.print(" START");
-        while(temp!=null){
-            System.out.print(" <- "+temp.data+" -> ");
-            temp=temp.next;
-        }
-        System.out.println("END");
+        patition.display();
 
     }
 
 
-    void intersection(){}
+    void mergeSortedLL(InterviewQuestions list1, InterviewQuestions list2){
+
+        InterviewQuestions merge = new InterviewQuestions();
+        InterviewQuestions.Node node1 = list1.head;
+        InterviewQuestions.Node node2 = list2.head;
+
+        while(node1!=null && node2!=null){
+            if(node1.data<=node2.data){
+                merge.addToEnd(node1.data);
+                node1=node1.next;
+            } 
+            else {
+                merge.addToEnd(node2.data);
+                node2=node2.next;
+            } 
+        }
+
+        while(node1!=null){
+            merge.addToEnd(node1.data);
+            node1=node1.next;
+        }
+        while(node2!=null){
+            merge.addToEnd(node2.data);
+            node2=node2.next;
+        }
+
+        merge.display();
+
+    }
 
 
 }
