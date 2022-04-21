@@ -205,6 +205,18 @@ public class InterviewQuestions {
         
         ll.mergeSortedLL(list1, list2);
 
+        InterviewQuestions l3= new InterviewQuestions();
+
+        l3.addAtStart(3);
+        l3.addAtStart(5);
+        l3.addAtStart(6);
+        l3.addAtStart(1);
+        l3.addAtStart(9);
+
+        ll.linkedListCycle(l3);
+        ll.isHappyNumber(19);
+        ll.middleOfLinkedList(l3);
+
         
         
     }
@@ -313,6 +325,7 @@ public class InterviewQuestions {
     }
 
 
+
     void mergeSortedLL(InterviewQuestions list1, InterviewQuestions list2){
 
         InterviewQuestions merge = new InterviewQuestions();
@@ -343,5 +356,106 @@ public class InterviewQuestions {
 
     }
 
+
+
+
+    void linkedListCycle(InterviewQuestions ll){
+        
+        InterviewQuestions.Node fast = ll.head;
+        InterviewQuestions.Node slow = ll.head;
+
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+
+            if(fast == slow) {
+                System.out.println("Cycle Present");
+                return;
+            }
+        }
+        System.out.println("Cycle not present");
+    }
+
+    void cycleLength(InterviewQuestions ll){
+        InterviewQuestions.Node fast = ll.head;
+        InterviewQuestions.Node slow = ll.head;
+        int length =0;
+
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+
+            if(fast == slow) {
+                InterviewQuestions.Node temp = slow;
+                do{
+                    temp=temp.next;
+                    length++;
+                } while(temp != slow);
+
+                System.out.println("Cycle Present with length = " + length);
+            }
+        }
+        System.out.println("Cycle not present");
+    }
+
+    void cycleStartNode(InterviewQuestions ll){
+        InterviewQuestions.Node first = ll.head;
+        InterviewQuestions.Node second = ll.head;
+        boolean pre = false; 
+
+        while(first!=null && first.next!=null){
+            first=first.next.next;
+            second=second.next;
+
+            if(first == second) {
+                first = head;
+                while(first != second){
+                    first=first.next;
+                    second=second.next;
+                    pre = true;
+                }
+                if(pre = true) System.out.println(first.data);
+                return;
+            }
+        }
+        System.out.println("Cycle not present");
+    }
+
+    void isHappyNumber(int n){
+        int slow = n;
+        int fast = n;
+
+        do{
+            slow = findSquare(slow);
+            fast = findSquare(findSquare(fast));
+        } while(fast !=slow);
+
+        if(slow == 1) System.out.println("True");
+        else System.out.println("False");
+
+
+    }
+    private int findSquare(int num){
+        int ans = 0;
+        while(num > 0){
+            int temp = num % 10;
+            num = num / 10;
+            ans += temp*temp;
+        }
+        return ans;
+    }
+
+    void middleOfLinkedList(InterviewQuestions ll){
+        InterviewQuestions.Node fast = ll.head;
+        InterviewQuestions.Node slow = ll.head;
+
+        while(fast.next!= null && fast.next.next!= null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        System.out.println("Middle of Linked List = "+slow.data);
+    }
+
+    
 
 }
