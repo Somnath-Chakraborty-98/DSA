@@ -216,6 +216,8 @@ public class InterviewQuestions {
         ll.linkedListCycle(l3);
         ll.isHappyNumber(19);
         ll.middleOfLinkedList(l3);
+        //ll.intersection(list1, list2);
+        ll.mergeSortLL(l3.head);
 
         
         
@@ -455,6 +457,95 @@ public class InterviewQuestions {
         }
         System.out.println("Middle of Linked List = "+slow.data);
     }
+
+    /*void intersection(InterviewQuestions list1, InterviewQuestions list2){
+
+        if (list1.head == null || list2.head == null) return ;
+    if (list1.tail != list2.tail) {
+      return;
+    }
+    InterviewQuestions.Node shorter = new InterviewQuestions.Node(0);
+    InterviewQuestions.Node longer = new InterviewQuestions.Node(0);
+    if (list1.size > list2.size) {
+      longer = list1.head;
+      shorter = list2.head;
+    } else {
+      longer = list2.head;
+      shorter = list1.head;
+    }
+
+    longer = getKthNode(longer, Math.abs(list1.size-list2.size));
+    while (shorter != longer) {
+      shorter = shorter.next;
+      longer = longer.next;
+    }
+    System.out.println(longer);
+
+
+    }*/
+
+
+    InterviewQuestions.Node mergeSortLL(Node head){
+        
+        if(head == null || head.next == null) return head;
+
+        InterviewQuestions.Node mid = findMid(head);
+        InterviewQuestions.Node left = head;
+        InterviewQuestions.Node right = mid.next;
+        mid.next = null;
+
+
+        left = mergeSortLL(left);
+        right = mergeSortLL(right);
+
+        InterviewQuestions.Node merge = merge2Sortedll(left, right);
+
+        return merge;
+    }
+
+    private Node findMid(Node ll){
+        InterviewQuestions.Node fast = ll;
+        InterviewQuestions.Node slow = ll;
+
+        while(fast.next!= null && fast.next.next!= null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        return slow;
+    }
+
+    private InterviewQuestions.Node merge2Sortedll(InterviewQuestions.Node list1, InterviewQuestions.Node list2){
+
+        InterviewQuestions merge = new InterviewQuestions();
+        InterviewQuestions.Node node1 = list1;
+        InterviewQuestions.Node node2 = list2;
+
+        while(node1!=null && node2!=null){
+            if(node1.data<=node2.data){
+                merge.addToEnd(node1.data);
+                node1=node1.next;
+            } 
+            else {
+                merge.addToEnd(node2.data);
+                node2=node2.next;
+            } 
+        }
+
+        while(node1!=null){
+            merge.addToEnd(node1.data);
+            node1=node1.next;
+        }
+        while(node2!=null){
+            merge.addToEnd(node2.data);
+            node2=node2.next;
+        }
+
+        return merge.head;
+
+    }
+
+    void flatenLL(InterviewQuestions ll){}
+
 
     
 
