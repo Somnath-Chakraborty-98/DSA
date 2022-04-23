@@ -1,6 +1,7 @@
 import java.util.*;
 public class InterviewQuestions {
     Node head;
+    Node tail;
 
     static class Node{
         int data;
@@ -218,6 +219,7 @@ public class InterviewQuestions {
         ll.middleOfLinkedList(l3);
         //ll.intersection(list1, list2);
         ll.mergeSortLL(l3.head);
+        //ll.recursiveReverseLL(list2.head);
 
         
         
@@ -545,6 +547,25 @@ public class InterviewQuestions {
     }
 
     void flatenLL(InterviewQuestions ll){}
+
+    void recursiveReverseLL(Node node){
+
+        if(node == tail){    // make the last node as head
+            head = tail;
+            return;
+        }
+
+
+        recursiveReverseLL(node.next);
+
+        tail.next = node; 
+        tail = node;
+        tail.next = null; // making the old pointer null
+    }
+
+    void iterativeReverseLL(Node node){
+        
+    }
 
 
     
