@@ -34,6 +34,17 @@ public class InterviewQuestions {
         System.out.println("END");
     }
 
+    void displayNodes (Node head){
+        Node temp = head;
+
+        System.out.print(" START");
+        while(temp!=null){
+            System.out.print(" <- "+temp.data+" -> ");
+            temp=temp.next;
+        }
+        System.out.println("END");
+    }
+
     void diplayReverse(){
         Node temp = head;
         Node last= null;
@@ -635,5 +646,30 @@ public class InterviewQuestions {
     }
 
     
+    void reorderList(Node head){
+        Node mid = findMid(head);
+
+        Node headFirst = head;
+        Node headSecond = iterativeReverseLL(mid);
+
+        Node temp = headFirst.next;
+
+        while(headFirst!=null || headSecond!=null){
+            temp = headFirst.next;
+            headFirst.next = headSecond;
+            headFirst = temp;
+
+            temp = headSecond.next;
+            headSecond.next = headFirst;
+            headSecond = temp;
+        }
+
+        if(headFirst!=null) headFirst.next=null;   //setting tail next to null
+    }
+
+    void reverseKGroup(Node head, int k){
+        
+    }
+
 
 }
