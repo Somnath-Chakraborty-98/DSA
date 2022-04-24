@@ -563,10 +563,76 @@ public class InterviewQuestions {
         tail.next = null; // making the old pointer null
     }
 
-    void iterativeReverseLL(Node node){
-        
+    Node iterativeReverseLL(Node head){
+        Node prev = null;
+        Node present = head;
+        Node next = head.next;
+
+        while(present != null){
+            present.next = prev;
+            prev = present;
+            present = next;
+
+            if(next!=null) next = next.next;
+        }
+
+        head = prev; // head = prev
+
+        return head;
     }
 
+
+    Node reverseSubList(Node head, int left, int right){
+        if(left == right) return;
+
+        Node present = head;
+        Node prev = null;
+
+        for(int i=0; present != null && i<left-1; i++){
+            prev = present;
+            present = present.next;
+        }
+
+        Node last = prev;
+        Node newEnd = present;
+
+        // reverse between left and right
+        Node next = present.next;
+        for(int i=0; present != null && i< right - left + 1; i++){
+            present.next = prev;
+            prev = present;
+            present = next;
+
+            if(next!=null) next = next.next;
+        }
+
+        if(last != null) last.next = prev;
+        else head = prev;
+
+        newEnd.next = present;
+
+        //return head;
+    }
+
+    boolean palindrome(Node head){
+        Node mid = findMid(head);
+        Node headSecond = iterativeReverseLL(mid);
+        Node rereverseHead = headSecond;
+
+        //compare both halves
+
+        while(head != null && headSecond != null){
+            if(head.data != headSecond.data) break;
+            head = head.next;
+            headSecond = headSecond.next;
+        }
+        iterativeReverseLL(rereverseHead);
+
+
+        if(head == null || headSecond == null) return true;
+        else return false;
+
+    }
 
     
 
