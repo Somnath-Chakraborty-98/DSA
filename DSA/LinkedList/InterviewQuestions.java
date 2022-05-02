@@ -668,7 +668,25 @@ public class InterviewQuestions {
     }
 
     void reverseKGroup(Node head, int k){
-        
+        Node prev = null;
+        Node curr = head;
+        Node next = head.next;
+        Node last = prev;
+        Node newLast = curr;
+
+        while(curr != null){
+            
+            for(int i=0;i<k;i++){
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+
+                if(next!=null) next = next.next;
+            }
+            if(last != null) last.next = prev;
+            else head = prev;
+            newLast.next=curr;
+        }
     }
 
 
