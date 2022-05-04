@@ -1,5 +1,5 @@
 public class stackByLL {
-    Node top;
+    Node top; //head
 
     static class Node{
         int data;
