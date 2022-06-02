@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class reverseTheArray {
+public class reverseTheArray { //Recursion
 
 
     void reverse(int arr[], int start, int end){

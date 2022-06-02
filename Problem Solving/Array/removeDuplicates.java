@@ -18,7 +18,7 @@ public class removeDuplicates {
     }
 
 
-    class Solution2 {
+    class Solution2 { //Two Pointer Algorithm
         public int removeDuplicates(int[] arr) {
             int i=0,j=1;
             
