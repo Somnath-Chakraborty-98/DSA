@@ -23,7 +23,7 @@ public class AggressiveCows {
         int low = 1, high = a[n - 1] - a[0];
 
         while (low <= high) {
-            int mid = (low + high) >> 1;
+            int mid = (low + high) / 2;
 
             if (isPossible(a, n, cows, mid)) {
                 low = mid + 1;
