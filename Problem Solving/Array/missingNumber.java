@@ -6,7 +6,7 @@ public class missingNumber{
         public int missingNumber(int[] arr) {
             int i=0;
             while(i<arr.length){
-                int j = arr[i];             //Correct position as it is starting from 0 no -1
+                int j = arr[i];             //[storing own index]Correct position as it is starting from 0 no -1
                 if(arr[i]<arr.length && arr[i] != arr[j]){
                     swap(arr,i, j);
                 } else i++;
