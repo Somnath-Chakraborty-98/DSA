@@ -53,17 +53,19 @@ public class BinarySearchIn2DArray {
         else return simpleBS(matrix, start,cMid + 1, n -1, target);
     }
 
-    static int[] simpleBS(int[][] matrix, int row, int start, int end, int target){
-        while(start <= end){
-            int mid = start + (end - start)/2;
-
-            if(matrix[row][mid] < target)    return new int[]{row, mid};
-
-            else if(matrix[row][mid] < target) start = mid + 1;
-
-            else end = mid - 1;
+    static int[] simpleBS(int[][] matrix, int row, int columnStart, int columnEnd, int target) {
+        while (columnStart <= columnEnd) {
+            int mid = columnStart + (columnEnd - columnStart) / 2;
+            if (matrix[row][mid] == target) {
+                return new int[]{row, mid};
+            } else if (matrix[row][mid] < target) {
+                columnStart = mid + 1;
+            } else {
+                columnEnd = columnStart - 1;
+            }
         }
-        return new int[]{-1,-1};
+
+        return new int[]{-1, -1};
     }
 
     public static void main(String[] args) {
