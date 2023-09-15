@@ -56,6 +56,24 @@ public class CyclicSort {
         return arr;
     }
 
+    public static int duplicateNumber(int[] array) {
+        int i = 0;
+        while(i < array.length) {
+            int correctPosition = array[i] - 1;
+            if (array.length > correctPosition && array[i] != array[correctPosition])
+                swap(array, i, correctPosition);
+            else
+                i++;
+        }
+
+        for (int j = 0; j < array.length; j++) {
+            if (array[j] != j + 1) {
+                return array[j];
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         System.out.println("Cyclic Sort : -");
         int[] arr1 = { 2, 5, 1, 3, 4 };
@@ -73,5 +91,8 @@ public class CyclicSort {
         System.out.println("Cyclic Sort to find Dissapeared Number : -");
         int[] arr4 = { 2, 3, 2, 1 };
         System.out.println(Arrays.toString(disappearedNumbers(arr4)));
+
+        System.out.println("Cyclic Sort to find Duplicate Number : -");
+        System.out.println(duplicateNumber(arr4));
     }
 }
