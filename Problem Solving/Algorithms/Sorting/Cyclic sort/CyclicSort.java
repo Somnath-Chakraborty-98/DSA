@@ -2,11 +2,13 @@ import java.util.Arrays;
 
 public class CyclicSort {
     public static int[] sort(int[] array) {
-        for (int i = 0; i < array.length; i++) {
+       int i = 0;
+        while(i < array.length) {
             int correctPosition = array[i] - 1;
             if (array[i] != array[correctPosition]) {
                 swap(array, i, correctPosition);
             }
+            else i++;
         }
         return array;
     }
@@ -18,10 +20,12 @@ public class CyclicSort {
     }
 
     public static int missingNumber(int[] array) {
-        for (int i = 0; i < array.length; i++) {
+        int i = 0;
+        while(i < array.length) {
             int correctPosition = array[i];
             if (array.length > correctPosition && array[i] != array[correctPosition])
                 swap(array, i, correctPosition);
+            else i++;
         }
 
         for (int j = 0; j < array.length; j++) {
@@ -29,6 +33,27 @@ public class CyclicSort {
                 return j;
         }
         return array.length;
+    }
+
+    public static int[] disappearedNumbers(int[] array) {
+        int i = 0;
+        while(i < array.length) {
+            int correctPosition = array[i] - 1;
+            if (array.length > correctPosition && array[i] != array[correctPosition])
+                swap(array, i, correctPosition);
+            else
+                i++;
+        }
+
+        int[] arr = { -1 };
+        int k = 0;
+        for (int j = 0; j < array.length; j++) {
+            if (array[j] != j + 1) {
+                arr[k] = j + 1;
+                k++;
+            }
+        }
+        return arr;
     }
 
     public static void main(String[] args) {
@@ -44,5 +69,9 @@ public class CyclicSort {
         System.out.println(missingNumber(arr2));
         System.out.print("Missing number 2 :- ");
         System.out.println(missingNumber(arr3));
+
+        System.out.println("Cyclic Sort to find Dissapeared Number : -");
+        int[] arr4 = { 2, 3, 2, 1 };
+        System.out.println(Arrays.toString(disappearedNumbers(arr4)));
     }
 }
