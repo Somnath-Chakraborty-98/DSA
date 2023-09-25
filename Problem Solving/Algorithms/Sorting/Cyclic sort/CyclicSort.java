@@ -74,6 +74,27 @@ public class CyclicSort {
         return -1;
     }
 
+    public static int[] duplicateAllNumbers(int[] array) {
+        int i = 0;
+        int[] res = {-1};
+        while(i < array.length) {
+            int correctPosition = array[i] - 1;
+            if (array.length > correctPosition && array[i] != array[correctPosition])
+                swap(array, i, correctPosition);
+            else
+                i++;
+        }
+
+        int c = 0;
+        for (int j = 0; j < array.length; j++) {
+            if (array[j] != j + 1) {
+                res[c] = array[j];
+                c++;
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         System.out.println("Cyclic Sort : -");
         int[] arr1 = { 2, 5, 1, 3, 4 };
@@ -94,5 +115,9 @@ public class CyclicSort {
 
         System.out.println("Cyclic Sort to find Duplicate Number : -");
         System.out.println(duplicateNumber(arr4));
+
+        int[] arr5 = { 2, 3, 2, 4, 1 };
+        System.out.println("Cyclic Sort to find All Duplicate Numbers : -");
+        System.out.println(Arrays.toString(duplicateAllNumbers(arr5)));
     }
 }
