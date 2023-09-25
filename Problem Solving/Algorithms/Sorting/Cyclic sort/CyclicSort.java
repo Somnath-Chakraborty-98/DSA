@@ -2,13 +2,13 @@ import java.util.Arrays;
 
 public class CyclicSort {
     public static int[] sort(int[] array) {
-       int i = 0;
-        while(i < array.length) {
+        int i = 0;
+        while (i < array.length) {
             int correctPosition = array[i] - 1;
             if (array[i] != array[correctPosition]) {
                 swap(array, i, correctPosition);
-            }
-            else i++;
+            } else
+                i++;
         }
         return array;
     }
@@ -21,11 +21,12 @@ public class CyclicSort {
 
     public static int missingNumber(int[] array) {
         int i = 0;
-        while(i < array.length) {
+        while (i < array.length) {
             int correctPosition = array[i];
             if (array.length > correctPosition && array[i] != array[correctPosition])
                 swap(array, i, correctPosition);
-            else i++;
+            else
+                i++;
         }
 
         for (int j = 0; j < array.length; j++) {
@@ -37,7 +38,7 @@ public class CyclicSort {
 
     public static int[] disappearedNumbers(int[] array) {
         int i = 0;
-        while(i < array.length) {
+        while (i < array.length) {
             int correctPosition = array[i] - 1;
             if (array.length > correctPosition && array[i] != array[correctPosition])
                 swap(array, i, correctPosition);
@@ -58,7 +59,7 @@ public class CyclicSort {
 
     public static int duplicateNumber(int[] array) {
         int i = 0;
-        while(i < array.length) {
+        while (i < array.length) {
             int correctPosition = array[i] - 1;
             if (array.length > correctPosition && array[i] != array[correctPosition])
                 swap(array, i, correctPosition);
@@ -76,8 +77,8 @@ public class CyclicSort {
 
     public static int[] duplicateAllNumbers(int[] array) {
         int i = 0;
-        int[] res = {-1};
-        while(i < array.length) {
+        int[] res = { -1 };
+        while (i < array.length) {
             int correctPosition = array[i] - 1;
             if (array.length > correctPosition && array[i] != array[correctPosition])
                 swap(array, i, correctPosition);
@@ -90,6 +91,26 @@ public class CyclicSort {
             if (array[j] != j + 1) {
                 res[c] = array[j];
                 c++;
+            }
+        }
+        return res;
+    }
+
+    public static int[] SetMismatch(int[] array) {
+        int i = 0;
+        int[] res = { -1, -1 };
+        while (i < array.length) {
+            int correctPosition = array[i] - 1;
+            if (array.length > correctPosition && array[i] != array[correctPosition])
+                swap(array, i, correctPosition);
+            else
+                i++;
+        }
+
+        for (int j = 0; j < array.length; j++) {
+            if (array[j] != j + 1) {
+                res[0] = array[j];
+                res[1] = j + 1;
             }
         }
         return res;
@@ -119,5 +140,9 @@ public class CyclicSort {
         int[] arr5 = { 2, 3, 2, 4, 1 };
         System.out.println("Cyclic Sort to find All Duplicate Numbers : -");
         System.out.println(Arrays.toString(duplicateAllNumbers(arr5)));
+
+        int[] arr6 = { 1, 2, 2, 4 };
+        System.out.println("Cyclic Sort - Set mismatch : -");
+        System.out.println(Arrays.toString(SetMismatch(arr6)));
     }
 }
