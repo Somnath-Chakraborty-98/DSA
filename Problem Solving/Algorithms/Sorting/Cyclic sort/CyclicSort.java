@@ -116,6 +116,24 @@ public class CyclicSort {
         return res;
     }
 
+    public static int FirstMissingPositive(int[] array) {
+        int i = 0;
+        while (i < array.length) {
+            int correctPosition = array[i] - 1;
+            if (array[i] > 0 && array[i] != array[correctPosition])
+                swap(array, i, correctPosition);
+            else
+                i++;
+        }
+
+        for (int j = 0; j < array.length; j++) {
+            if (array[j] != j + 1) {
+                return j + 1;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         System.out.println("Cyclic Sort : -");
         int[] arr1 = { 2, 5, 1, 3, 4 };
@@ -144,5 +162,9 @@ public class CyclicSort {
         int[] arr6 = { 1, 2, 2, 4 };
         System.out.println("Cyclic Sort - Set mismatch : -");
         System.out.println(Arrays.toString(SetMismatch(arr6)));
+
+        int[] arr7 = { 3, 4, -1, 1 };
+        System.out.println("Cyclic Sort - first missing positive : -");
+        System.out.println(FirstMissingPositive(arr7));
     }
 }
