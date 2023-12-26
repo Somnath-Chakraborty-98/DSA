@@ -89,15 +89,40 @@ public class LinkedList {
         return val;
     }
 
-    public int deleteEnd(){
-        if(size == 0)
-        return -1;
+    public int deleteEnd() {
+        if (size == 0)
+            return -1;
 
-        int val = tail.value;
-        
+        Node node = head;
+        while (node.next.next != null) {
+            node = node.next;
+        }
 
+        int val = node.next.value;
+        node.next = null;
 
         size--;
+        return val;
+    }
+
+    public int deleteIndex(int index) {
+
+        if (index == 0)
+            return deleteFirst();
+
+        if (index == size - 1)
+            return deleteEnd();
+
+        int i = 0;
+        Node temp = head;
+        while (i < index) {
+            temp = temp.next;
+        }
+
+        int val = temp.next.value;
+        temp.next = temp.next.next;
+        size--;
+        
         return val;
     }
 
@@ -111,6 +136,15 @@ public class LinkedList {
         System.out.println(list.deleteFirst());
         list.display();
         list.inserEnd(8);
+        list.display();
+        System.out.println(list.deleteEnd());
+        list.display();
+        list.insertFirst(3);
+        list.insertFirst(10);
+        list.insertFirst(9);
+        list.insertFirst(11);
+        list.display();
+        System.out.println(list.deleteIndex(3));
         list.display();
     }
 }
