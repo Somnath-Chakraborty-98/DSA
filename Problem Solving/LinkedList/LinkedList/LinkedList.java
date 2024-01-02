@@ -122,8 +122,22 @@ public class LinkedList {
         int val = temp.next.value;
         temp.next = temp.next.next;
         size--;
-        
+
         return val;
+    }
+
+    public Node insertRec(int index, int val, Node node) {
+        if (index == 0) {
+            Node temp = new Node(val, node);
+            return temp;
+        }
+
+        node.next = insertRec(index - 1, val, node.next);
+        return node;
+    }
+
+    public void insertUsingRecursion(int val, int index) {
+        head = insertRec(val, index, head);
     }
 
     public static void main(String[] args) {
@@ -139,12 +153,15 @@ public class LinkedList {
         list.display();
         System.out.println(list.deleteEnd());
         list.display();
-        list.insertFirst(3);
+        list.insertFirst(5);
         list.insertFirst(10);
         list.insertFirst(9);
         list.insertFirst(11);
         list.display();
         System.out.println(list.deleteIndex(3));
+        list.display();
+        System.out.println("Recursion");
+        list.insertUsingRecursion(99, 3);
         list.display();
     }
 }
