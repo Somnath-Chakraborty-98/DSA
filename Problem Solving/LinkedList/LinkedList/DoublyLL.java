@@ -1,6 +1,6 @@
 public class DoublyLL {
 
-    Node head;
+    static Node head;
 
     private class Node {
         private int value;
@@ -59,18 +59,18 @@ public class DoublyLL {
         node.next = null;
     }
 
-    public void insertAtIndex(int index, int val){
-        if(index == 0){
+    public void insertAtIndex(int index, int val) {
+        Node temp = head;
+        if (index == 0 || head == null) {
             insertFirst(val);
             return;
         }
         Node node = new Node(val);
-        Node temp = head;
-        for(int i = 0; i < index - 2; i++){
+        for (int i = 0; i < index - 2; i++) {
             temp = temp.next;
         }
 
-        if(temp.next == null){
+        if (temp.next == null) {
             insertEnd(val);
             return;
         }
@@ -78,6 +78,46 @@ public class DoublyLL {
         node.next = temp.next;
         temp.next = node;
         node.prev = temp;
+    }
+
+    public static int deleteIndex(int index) {
+        int i = 0;
+        Node temp = head;
+        if (index == 0 || temp.next == null)
+            return deleteFirst();
+
+        while (temp.next != null && i < index - 1)
+            temp = temp.next;
+
+        if (temp.next == null)
+            return deleteEnd();
+
+        temp.next.prev = temp.prev;
+        temp.prev.next = temp.next;
+        temp.prev = null;
+        temp.next = null;
+
+        return temp.value;
+    }
+
+    public static int deleteFirst() {
+        Node temp = head;
+        head = temp.next;
+        head.prev = null;
+        temp.next = null;
+
+        return temp.value;
+    }
+
+    public static int deleteEnd() {
+        Node temp = head;
+        while (temp.next != null)
+            temp = temp.next;
+
+        temp.prev.next = null;
+        temp.prev = null;
+
+        return temp.value;
     }
 
     // ------------------------------------------------------------------------------------//
@@ -108,6 +148,12 @@ public class DoublyLL {
         ll.insertAtIndex(14, 102);
         ll.display();
         ll.insertAtIndex(14, 103);
+        ll.display();
+        System.out.println("Deleted Value - " + deleteFirst());
+        ll.display();
+        System.out.println("Deleted Value - " + deleteEnd());
+        ll.display();
+        System.out.println("Deleted Value - " + deleteIndex(120));
         ll.display();
     }
 }

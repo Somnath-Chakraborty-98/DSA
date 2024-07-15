@@ -12,7 +12,7 @@ public class reverseTheArray { // Recursion
         arr[start] = arr[end];
         arr[end] = temp;
 
-        reverse(arr, start + 1, end - 1);
+        reverse1(arr, start + 1, end - 1);
     }
 
     void reverse2(int arr[], int start, int end) {
